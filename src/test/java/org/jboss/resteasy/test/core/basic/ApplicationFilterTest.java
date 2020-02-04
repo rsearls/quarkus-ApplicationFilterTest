@@ -71,7 +71,7 @@ public class ApplicationFilterTest {
     * @tpTestDetails Test for not founded method
     * @tpSince RESTEasy 3.0.16
     */
-   @Ignore
+ //  @Ignore
    @Test
    public void testMethodNotFound() throws Exception {
       String newCustomer = "<customer>"
@@ -102,7 +102,7 @@ public class ApplicationFilterTest {
     * @tpTestDetails Test common application usage
     * @tpSince RESTEasy 3.0.16
     */
-   @Ignore
+ //  @Ignore
    @Test
    public void testCustomerResource() throws Exception {
       // Create a new customer

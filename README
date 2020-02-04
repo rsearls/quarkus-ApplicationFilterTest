@@ -13,3 +13,12 @@ mvn install:install-file \
 Debugging
 Set a breakpoint at following
   FilterDispatcher line 35  ;; here you will see the class is never called.
+
+---
+mvn clean test -DskipTests=true		;; comile don't run tests
+mvn test							;; run tests
+mvn test -Dmaven.surefire.debug 	;; debug
+
+
+
+

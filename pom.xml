@@ -9,7 +9,7 @@
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.target>1.8</maven.compiler.target>   
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus-plugin.version>1.0.1.Final</quarkus-plugin.version>
@@ -18,6 +18,11 @@
     <quarkus.platform.version>1.0.1.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
     <resteasy-version>4.5.0-SNAPSHOT</resteasy-version>
+    <dep.arquillian-bom.version>1.4.1.Final</dep.arquillian-bom.version>
+    <version.org.wildfly.extras.creaper>1.6.1</version.org.wildfly.extras.creaper>
+    <version.log4j>2.9.1</version.log4j>
+    <version.testng>6.9.9</version.testng>
+    <version.eclipse.jdt>3.5.0</version.eclipse.jdt>
   </properties>
 
   <dependencyManagement>
@@ -29,10 +34,97 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${dep.arquillian-bom.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>org.eclipse.jdt.junit.runtime</artifactId>
+      <version>${version.eclipse.jdt}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${version.testng}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.shrinkwrap</groupId>
+      <artifactId>shrinkwrap-impl-base</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.arquillian.testng</groupId>
+      <artifactId>arquillian-testng-container</artifactId>
+      <version>${dep.arquillian-bom.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.test</groupId>
+      <artifactId>arquillian-test-impl-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.core</groupId>
+      <artifactId>arquillian-core-impl-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${version.log4j}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${version.log4j}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.wildfly.extras.creaper</groupId>
+      <artifactId>creaper-core</artifactId>
+      <version>${version.org.wildfly.extras.creaper}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jboss.as</groupId>
+          <artifactId>jboss-as-controller-client</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jboss.as</groupId>
+          <artifactId>jboss-as-cli</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.extras.creaper</groupId>
+      <artifactId>creaper-commands</artifactId>
+      <version>${version.org.wildfly.extras.creaper}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.wildfly</groupId>
+          <artifactId>wildfly-patching</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- ##########    ######## -->
+    <dependency>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-undertow</artifactId>
+        <version>1.2.0.Final</version>
+    </dependency>
+
     <!-- resolves java.lang.ClassNotFoundException:
       org.glassfish.jersey.client.JerseyClientBuilder
     -->
